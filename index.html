@@ -15,276 +15,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            /* Colors */
-            --primary: #4361ee;
-            --primary-dark: #3a0ca3;
-            --orange: #f59e0b;
-            --success: #10b981;
-            --danger: #ef476f;
-            --text-main: #1f2937;
-            --text-secondary: #6b7280;
-            --bg-body: #f3f4f6;
-            --bg-card: #ffffff;
-            --border: #e5e7eb;
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            --radius: 16px;
-        }
-
-        body.dark-mode {
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border: #334155;
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            margin: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* --- Header --- */
-        .glass-header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        body.dark-mode .glass-header { background: rgba(30, 41, 59, 0.85); }
-
-        .header-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .brand-box h1 { margin: 0; font-size: 1.4rem; color: var(--primary); }
-        .source-badge {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            display: block;
-            margin-top: 4px;
-        }
-
-        .lang-group {
-            display: flex;
-            gap: 4px;
-            background: var(--bg-body);
-            padding: 4px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .lang-btn {
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            padding: 6px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        .lang-btn:hover { color: var(--primary); }
-        .lang-btn.active {
-            background: var(--bg-card);
-            color: var(--primary);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .btn-icon {
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-main);
-            width: 38px; height: 38px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-left: 8px;
-        }
-        .btn-icon:hover { background: var(--border); }
-
-        /* --- Grid Layout --- */
-        .container {
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 310px 1fr;
-            gap: 25px;
-        }
-        @media (max-width: 1024px) { .container { grid-template-columns: 1fr; } }
-
-        /* --- Cards --- */
-        .card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 20px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* --- Sidebar Inputs --- */
-        .form-select, .form-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            background: var(--bg-body);
-            color: var(--text-main);
-            box-sizing: border-box;
-        }
-
-        /* --- Quick Filters --- */
-        .quick-filters {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        .q-btn {
-            background: var(--bg-body);
-            border: 1px solid var(--border);
-            padding: 6px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            transition: all 0.2s;
-        }
-        .q-btn:hover { border-color: var(--primary); color: var(--primary); }
-        
-        /* --- Calculator --- */
-        .converter {
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(245, 158, 11, 0.05));
-            border-radius: 12px;
-            padding: 15px;
-        }
-        .calc-res { font-size: 1.2rem; font-weight: bold; color: var(--primary); text-align: center; margin-top: 10px; }
-        .swap-btn {
-            width: 100%; background: var(--bg-body); border: 1px solid var(--border);
-            padding: 5px; cursor: pointer; border-radius: 8px; margin: 5px 0; color: var(--text-secondary);
-        }
-        .calc-label-sm { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 3px; display: block; }
-
-        /* --- AGENCY PROMO POSTER --- */
-        .promo-card {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            text-align: center;
-            border: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .promo-content { position: relative; z-index: 2; width: 100%; }
-        
-        .promo-logo {
-            max-width: 150px;
-            height: auto;
-            margin-bottom: 15px;
-            /* Filter to make logo white */
-            filter: brightness(0) invert(1);
-            opacity: 0.95;
-            transition: transform 0.3s ease;
-        }
-        .promo-card:hover .promo-logo { transform: scale(1.05); }
-
-        .promo-title { font-size: 1rem; font-weight: 700; margin-bottom: 5px; color: rgba(255,255,255,0.9); }
-        .promo-text { font-size: 0.85rem; opacity: 0.85; line-height: 1.4; margin-bottom: 15px; font-style: italic; }
-        .promo-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-block;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Background geometric effect */
-        .promo-bg {
-            position: absolute; width: 150px; height: 150px;
-            background: rgba(255,255,255,0.1); border-radius: 50%;
-            top: -50px; right: -50px; z-index: 1;
-        }
-        .promo-bg-2 {
-            position: absolute; width: 80px; height: 80px;
-            background: rgba(255,255,255,0.05); border-radius: 50%;
-            bottom: -20px; left: -20px; z-index: 1;
-        }
-
-        /* --- Stats Grid --- */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .stat-box {
-            background: var(--bg-card);
-            padding: 20px;
-            border-radius: var(--radius);
-            border-left: 5px solid;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s;
-        }
-        .stat-box:hover { transform: translateY(-3px); }
-        .stat-val { font-size: 1.4rem; font-weight: 700; margin: 5px 0 0 0; }
-        .stat-label { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
-        .stat-icon {
-            width: 45px; height: 45px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-        }
-
-        .s-blue { border-color: var(--primary); }
-        .s-blue .stat-icon { background: rgba(67,97,238,0.1); color: var(--primary); }
-        .s-green { border-color: var(--success); }
-        .s-green .stat-icon { background: rgba(16,185,129,0.1); color: var(--success); }
-        .s-orange { border-color: var(--orange); }
-        .s-orange .stat-icon { background: rgba(245,158,11,0.1); color: var(--orange); }
-        .s-red { border-color: var(--danger); }
-        .s-red .stat-icon { background: rgba(239,71,111,0.1); color: var(--danger); }
-
-        /* --- Charts & Visual Effects --- */
-        .chart-box { height: 380px; position: relative; width: 100%; z-index: 2; }
-        
-        .forecast-deco {
-            position: absolute;
-            right: -20px;
-            bottom: -30px;
-            font-size: 14rem;
-            color: var(--text-main);
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 0;
-            transform: rotate(-15deg);
-        }
-
-        /* --- Footer --- */
-        .footer {
-            text-align: center; padding: 30px; margin-top: 20px;
-            color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--border);
-        }
+        :root{--primary:#4361ee;--primary-dark:#3a0ca3;--orange:#f59e0b;--success:#10b981;--danger:#ef476f;--text-main:#111827;--text-secondary:#6b7280;--bg-body:#f4f6fb;--bg-card:#ffffff;--border:#e5e9f2;--shadow:0 1px 2px rgba(16,24,40,.05),0 6px 20px -10px rgba(16,24,40,.15);--radius:16px}
+        body.dark-mode{--bg-body:#0b1220;--bg-card:#131c2e;--text-main:#e5e7eb;--text-secondary:#8b97ad;--border:#24324d;--primary:#6b7cff;--primary-dark:#4f46e5;--shadow:0 6px 20px -10px rgba(0,0,0,.6)}
+        *{box-sizing:border-box}
+        body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg-body);color:var(--text-main);margin:0;transition:background .3s,color .3s}
+        .glass-header{position:sticky;top:0;z-index:100;background:var(--bg-card);border-bottom:1px solid var(--border);padding:14px 0;backdrop-filter:blur(10px)}
+        .header-inner{max-width:1320px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+        .brand-box h1{margin:0;font-size:1.2rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:8px}
+        .source-badge{font-size:.75rem;color:var(--text-secondary);display:block;margin-top:3px}
+        .lang-group{display:flex;gap:2px;background:var(--bg-body);padding:3px;border-radius:10px;border:1px solid var(--border)}
+        .lang-btn{border:0;background:transparent;color:var(--text-secondary);padding:6px 10px;border-radius:7px;cursor:pointer;font-weight:600;font-size:.8rem;font-family:inherit}
+        .lang-btn.active{background:var(--bg-card);color:var(--primary);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+        .btn-icon{border:1px solid var(--border);background:var(--bg-card);color:var(--text-main);width:38px;height:38px;border-radius:10px;cursor:pointer;margin-left:8px}
+        .btn-icon:hover{border-color:var(--primary);color:var(--primary)}
+        .load-status{max-width:1320px;margin:16px auto 0;padding:9px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text-secondary);font-size:.85rem}
+        .load-status[hidden]{display:none}
+        .container{max-width:1320px;margin:24px auto;padding:0 20px;display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+        aside{position:sticky;top:90px}
+        @media(max-width:1024px){.container{grid-template-columns:1fr}aside{position:static}}
+        .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:20px;position:relative;overflow:hidden}
+        .card h3{margin:0 0 14px;font-size:.95rem;font-weight:600;display:flex;align-items:center;gap:8px}
+        .card h3 i{color:var(--primary)}
+        .form-select,.form-input{width:100%;padding:10px 12px;margin-bottom:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-body);color:var(--text-main);font:inherit;font-size:.9rem}
+        .form-select:focus,.form-input:focus{outline:2px solid var(--primary);outline-offset:-1px}
+        .quick-filters{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+        .q-btn{background:var(--bg-body);border:1px solid var(--border);padding:7px 0;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;color:var(--text-secondary);font-family:inherit;transition:.2s}
+        .q-btn:hover{color:var(--primary)}
+        .q-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+        .converter{background:linear-gradient(135deg,rgba(67,97,238,.08),rgba(245,158,11,.06));border-radius:12px;padding:14px}
+        .calc-label-sm{font-size:.75rem;color:var(--text-secondary);margin-bottom:4px;display:block}
+        .swap-btn{width:100%;background:var(--bg-card);border:1px solid var(--border);padding:6px;cursor:pointer;border-radius:8px;margin:2px 0 8px;color:var(--text-secondary)}
+        .calc-res{font-size:1.35rem;font-weight:700;color:var(--primary);text-align:center;margin-top:8px;font-variant-numeric:tabular-nums}
+        .promo-card{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;text-align:center;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+        .promo-content{position:relative;z-index:2;width:100%}
+        .promo-logo{max-width:120px;height:auto;margin-bottom:12px;filter:brightness(0) invert(1);opacity:.95}
+        .promo-title{font-size:.95rem;font-weight:700;margin-bottom:4px}
+        .promo-text{font-size:.8rem;opacity:.85;line-height:1.4;margin-bottom:12px}
+        .promo-badge{background:rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:600;display:inline-block}
+        .promo-bg,.promo-bg-2{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);z-index:1}
+        .promo-bg{width:150px;height:150px;top:-60px;right:-60px}
+        .promo-bg-2{width:90px;height:90px;bottom:-30px;left:-30px}
+        .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:20px}
+        .stat-box{background:var(--bg-card);border:1px solid var(--border);border-top:3px solid;border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:flex-start;transition:transform .2s}
+        .stat-box:hover{transform:translateY(-2px)}
+        .stat-label{font-size:.8rem;color:var(--text-secondary);margin:0;font-weight:500}
+        .stat-val{font-size:1.35rem;font-weight:700;margin:6px 0 0;font-variant-numeric:tabular-nums}
+        .delta{display:block;font-size:.75rem;color:var(--text-secondary);margin-top:4px}
+        .stat-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+        .s-blue{border-top-color:var(--primary)}.s-blue .stat-icon{background:rgba(67,97,238,.12);color:var(--primary)}
+        .s-green{border-top-color:var(--success)}.s-green .stat-icon{background:rgba(16,185,129,.12);color:var(--success)}
+        .s-orange{border-top-color:var(--orange)}.s-orange .stat-icon{background:rgba(245,158,11,.12);color:var(--orange)}
+        .s-red{border-top-color:var(--danger)}.s-red .stat-icon{background:rgba(239,71,111,.12);color:var(--danger)}
+        .chart-box{height:340px;position:relative;width:100%}
+        .forecast-deco{display:none}
+        .footer{text-align:center;padding:24px;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border)}
+        @media(max-width:640px){.chart-box{height:260px}.stat-val{font-size:1.15rem}.header-inner{justify-content:center}}
     </style>
 </head>
 <body>
@@ -307,6 +92,8 @@
             </div>
         </div>
     </header>
+
+    <div class="load-status" id="load-status" hidden></div>
 
     <div class="container" id="main-app">
         
@@ -337,7 +124,7 @@
                 <div class="converter">
                     <!-- Date Input for Calc -->
                     <label class="calc-label-sm"><i class="fa-regular fa-calendar"></i> <span id="t-calc-date">Sanadagi kurs:</span></label>
-                    <input type="date" id="calc-date" class="form-input" onchange="runCalc()">
+                    <input type="date" id="calc-date" class="form-input" onchange="refreshData()">
                     
                     <!-- Amount Input -->
                     <input type="text" inputmode="numeric" id="calc-input" class="form-input" value="100" oninput="formatCalcInput(this)" placeholder="0" style="margin-top:5px;">
@@ -376,6 +163,7 @@
                     <div>
                         <p class="stat-label" id="t-current">Joriy Kurs</p>
                         <p class="stat-val" id="val-current">0.00</p>
+                        <span class="delta" id="delta"></span>
                     </div>
                     <div class="stat-icon"><i class="fa-solid fa-money-bill"></i></div>
                 </div>
@@ -418,7 +206,7 @@
                 <h3><span id="t-forecast">Oylik Prognoz (AI Trend)</span></h3>
                 <p style="font-size:0.85em; color:var(--text-secondary); margin-bottom:15px; position:relative; z-index:2;">
                     <i class="fa-solid fa-wand-magic-sparkles"></i> 
-                    <span id="t-forenote">Prognoz o'tgan 3 yillik mavsumiy tebranishlar asosida hisoblandi.</span>
+                    <span id="t-forenote">Oxirgi 12 oylik o'rtacha kurs va o'rtacha oylik o'zgarish asosidagi taxminiy ko'rsatkich.</span>
                 </p>
                 <div class="chart-box">
                     <canvas id="barChart"></canvas>
@@ -432,7 +220,186 @@
     </div>
 
     <script>
-        const API = 'https://raw.githubusercontent.com/sunattagayev-cloud/exchange-data/main/exchange_rates.json';
+        // ================== MA'LUMOT MANBAI: O'zbekiston Respublikasi Markaziy banki ==================
+        // Rasmiy JSON API (https://cbu.uz/uz/arkhiv-kursov-valyut/veb-masteram/):
+        //   joriy kurslar:            .../json/
+        //   bitta sananing kurslari:  .../json/all/YYYY-MM-DD/
+        // GitHub dagi JSON bazasi ishlatilmaydi — ma'lumot to'g'ridan-to'g'ri CBU saytidan olinadi.
+        const CBU_LATEST = 'https://cbu.uz/uz/arkhiv-kursov-valyut/json/';
+        const CBU_DAY = iso => `https://cbu.uz/uz/arkhiv-kursov-valyut/json/all/${iso}/`;
+        const CACHE_KEY = 'cbu_rates_cache_v1';  // faqat tugagan kunlar saqlanadi (ular o'zgarmaydi)
+        const HISTORY_YEARS = 3;                 // prognoz uchun 3 yillik tarix kerak
+        const CONCURRENCY = 4;                   // bir vaqtda nechta so'rov
+        const TIMEOUT_MS = 15000;
+
+        let appReady = false;
+        let statusTimer = null;
+        const dayCache = new Map(); // 'YYYY-MM-DD' -> { dt: 'YYYY-MM-DD' | null, rows: [[ccy, rate, nominal], ...] }
+        const pending = new Map();  // hozir yuklanayotgan so'rovlar (bir kun ikki marta so'ralmasin)
+
+        const tr = () => i18n[curLang];
+        const pad = n => String(n).padStart(2, '0');
+        function fmtISO(d) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
+        const todayISO = () => fmtISO(new Date());
+        function addDaysISO(iso, n) {
+            const d = new Date(iso + 'T00:00:00Z');
+            d.setUTCDate(d.getUTCDate() + n);
+            return d.toISOString().slice(0, 10);
+        }
+        function yearsAgoISO(years) {
+            const d = new Date();
+            d.setFullYear(d.getFullYear() - years);
+            return fmtISO(d);
+        }
+        // Shanba-yakshanba so'ralmaydi (ularda yangi kurs e'lon qilinmaydi, oldingi ish kuni kursi amal qiladi)
+        function businessDays(fromISO, toISO) {
+            const out = [];
+            for (let iso = fromISO; iso <= toISO; iso = addDaysISO(iso, 1)) {
+                const dow = new Date(iso + 'T00:00:00Z').getUTCDay();
+                if (dow !== 0 && dow !== 6) out.push(iso);
+            }
+            return out;
+        }
+
+        function historyStartISO() {   // prognoz oxirgi 12 oylikdan foydalanadi: 13 oy yetarli
+            const d = new Date();
+            d.setDate(1);
+            d.setMonth(d.getMonth() - 13);
+            return fmtISO(d);
+        }
+
+        async function fetchJson(url) {
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+            try {
+                const res = await fetch(url, { signal: ctrl.signal });
+                if (res.status === 404) return [];   // bu sanada kurs e'lon qilinmagan
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                if (!Array.isArray(data)) throw new Error("Noto'g'ri javob formati");
+                return data;
+            } finally {
+                clearTimeout(timer);
+            }
+        }
+
+        // CBU sanasi "10.10.2026" -> "2026-10-10"
+        function cbuDateToISO(s) {
+            const [d, m, y] = String(s).split('.');
+            return `${y}-${pad(+m)}-${pad(+d)}`;
+        }
+
+        // CBU javobini keshda saqlash uchun ixcham shaklga keltiradi
+        function toRecord(arr) {
+            if (!arr.length) return { dt: null, rows: [] };
+            return {
+                dt: cbuDateToISO(arr[0].Date),
+                rows: arr.map(r => [r.Ccy, parseFloat(r.Rate), parseFloat(r.Nominal) || 1]),
+            };
+        }
+
+        async function fetchWithRetry(url, tries = 3) {
+            for (let i = 1; ; i++) {
+                try { return await fetchJson(url); }
+                catch (e) { if (i >= tries) throw e; await new Promise(r => setTimeout(r, 600 * i)); }
+            }
+        }
+
+        function fetchDay(iso) {
+            if (dayCache.has(iso)) return Promise.resolve(dayCache.get(iso));
+            if (pending.has(iso)) return pending.get(iso);
+            const p = fetchWithRetry(CBU_DAY(iso))
+                .then(arr => { const rec = toRecord(arr); dayCache.set(iso, rec); return rec; })
+                .finally(() => pending.delete(iso));
+            pending.set(iso, p);
+            return p;
+        }
+
+        // dayCache -> rawData (qolgan kod shu massiv bilan ishlaydi)
+        function rebuildRawData() {
+            const out = [];
+            const seen = new Set();
+            for (const rec of dayCache.values()) {
+                if (!rec.dt) continue;
+                for (const [ccy, rate, nominal] of rec.rows) {
+                    const key = rec.dt + '|' + ccy;
+                    if (!isFinite(rate) || seen.has(key)) continue;
+                    seen.add(key);
+                    out.push({ date: rec.dt, ccy, rate, nominal });
+                }
+            }
+            out.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+            rawData = out;
+        }
+
+        function loadCache() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+                for (const [iso, rec] of Object.entries(saved)) dayCache.set(iso, rec);
+            } catch (e) { /* localStorage ishlamasa — keshsiz davom etamiz */ }
+        }
+
+        function saveCache() {
+            try {
+                const cutoff = yearsAgoISO(HISTORY_YEARS + 1);
+                const today = todayISO();
+                const obj = {};
+                for (const [iso, rec] of dayCache) {
+                    if (iso >= cutoff && iso < today) obj[iso] = rec; // faqat tugagan kunlar
+                }
+                localStorage.setItem(CACHE_KEY, JSON.stringify(obj));
+            } catch (e) { /* hajm to'lsa — keshsiz davom etamiz */ }
+        }
+
+        function showStatus(msg) {
+            const el = document.getElementById('load-status');
+            clearTimeout(statusTimer);
+            el.textContent = msg;
+            el.hidden = false;
+        }
+        function hideStatus() { document.getElementById('load-status').hidden = true; }
+        function flashStatus(msg) { showStatus(msg); statusTimer = setTimeout(hideStatus, 6000); }
+
+        function renderAll() { updateUI(); }
+
+        // Kerakli oraliqdagi yetishmayotgan kunlarni CBU dan yuklaydi (eng yangilaridan boshlab)
+        async function ensureRange(fromISO, toISO) {
+            const lastDone = addDaysISO(todayISO(), -1);   // bugungi kurs joriy so'rovdan keladi
+            const to = toISO > lastDone ? lastDone : toISO;
+            const todo = businessDays(fromISO, to).filter(d => !dayCache.has(d)).reverse();
+            if (!todo.length) return 0;
+
+            let next = 0, done = 0, failed = 0;
+            showStatus(`${tr().loading}: 0 / ${todo.length}`);
+            const worker = async () => {
+                while (next < todo.length) {
+                    const iso = todo[next++];
+                    try { await fetchDay(iso); } catch (e) { failed++; }
+                    done++;
+                    showStatus(`${tr().loading}: ${done} / ${todo.length}`);
+                    
+                }
+            };
+            await Promise.all(Array.from({ length: CONCURRENCY }, worker));
+
+            rebuildRawData();
+            saveCache();
+            if (failed) flashStatus(`${tr().loadFailed}: ${failed}`);
+            else hideStatus();
+            return failed;
+        }
+
+        // Sana yoki kalendar o'zgarganda kerakli ma'lumotni yuklab, keyin chizadi
+        async function refreshData() {
+            const s = document.getElementById('start-date').value;
+            const e = document.getElementById('end-date').value;
+            const c = document.getElementById('calc-date').value || todayISO();
+            const from = [s, historyStartISO(), addDaysISO(c, -14)].filter(Boolean).sort()[0];
+            const to = [e, c, todayISO()].filter(Boolean).sort().pop();
+            await ensureRange(addDaysISO(from, -3), to);
+            renderAll();
+        }
+
         let rawData = [];
         let curLang = 'uz'; // Default
         let lineChart = null;
@@ -454,10 +421,13 @@
                 max: "Maksimum",
                 hist: "Tarixiy Dinamika",
                 forecast: "Oylik Prognoz",
-                forenote: "Prognoz o'tgan 3 yillik mavsumiy tebranishlar asosida hisoblandi.",
+                forenote: "Oxirgi 12 oylik o'rtacha kurs va o'rtacha oylik o'zgarish asosidagi taxminiy ko'rsatkich.",
                 slogan: "Ishonchli tahlil va aniq moliyaviy prognozlar",
                 btns: { m1: "1 Oy", m6: "6 Oy", y1: "1 Yil", y3: "3 Yil" },
-                chart: { history: "Tarixiy", forecast: "Prognoz" }
+                chart: { history: "Tarixiy", forecast: "Prognoz" },
+                loading: "Ma'lumotlar Markaziy bank saytidan yuklanmoqda",
+                loadFailed: "Ba'zi kunlar yuklanmadi",
+                delta: "oldingiga nisbatan"
             },
             ru: {
                 brand: "Аналитический Дашборд",
@@ -473,10 +443,13 @@
                 max: "Максимум",
                 hist: "Историческая динамика",
                 forecast: "Месячный прогноз",
-                forenote: "Прогноз рассчитан на основе сезонных колебаний за последние 3 года.",
+                forenote: "Ориентировочный показатель: средний курс за 12 месяцев и средний месячный темп изменения.",
                 slogan: "Надежный анализ и точные финансовые прогнозы",
                 btns: { m1: "1 Мес", m6: "6 Мес", y1: "1 Год", y3: "3 Года" },
-                chart: { history: "Исторический", forecast: "Прогноз" }
+                chart: { history: "Исторический", forecast: "Прогноз" },
+                loading: "Загрузка данных с сайта Центрального банка",
+                loadFailed: "Часть дней не загружена",
+                delta: "к предыдущему"
             },
             en: {
                 brand: "Analytics Dashboard",
@@ -492,45 +465,42 @@
                 max: "Maximum",
                 hist: "Historical Trend",
                 forecast: "Monthly Forecast",
-                forenote: "Forecast calculated based on seasonal fluctuations of the last 3 years.",
+                forenote: "Indicative projection: last 12 monthly averages and the average monthly change.",
                 slogan: "Reliable analysis and accurate financial forecasts",
                 btns: { m1: "1 Mon", m6: "6 Mon", y1: "1 Yr", y3: "3 Yrs" },
-                chart: { history: "Historical", forecast: "Forecast" }
+                chart: { history: "Historical", forecast: "Forecast" },
+                loading: "Loading data from the Central Bank website",
+                loadFailed: "Some days could not be loaded",
+                delta: "vs previous"
             }
         };
 
         // --- Init ---
         document.addEventListener('DOMContentLoaded', async () => {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark-mode');
-            
+            loadCache();
+
             try {
-                const res = await fetch(API);
-                if(!res.ok) throw new Error("Tarmoq xatosi");
-                
-                const txt = await res.text();
-                let json;
-                try { json = JSON.parse(txt); } catch(e) { json = []; }
+                // 1) Joriy kurslar — bitta so'rov. Ilova shu bilan darhol ishga tushadi.
+                const latest = toRecord(await fetchJson(CBU_LATEST));
+                if (!latest.dt) throw new Error("Ma'lumot topilmadi");
+                dayCache.set(latest.dt, latest);
+                rebuildRawData();
 
-                rawData = Array.isArray(json) ? json : (json.data || []);
-                if(!rawData.length) throw new Error("Ma'lumot topilmadi");
-                
-                // Sort data just in case
-                rawData.sort((a,b) => new Date(a.date) - new Date(b.date));
-
-                // Init Date for Calc to MAX available date
-                const allDates = rawData.map(d=>d.date);
-                const maxDate = allDates[allDates.length-1];
-                document.getElementById('calc-date').value = maxDate;
-
-                setQuickFilter('1y');
+                // 2) Sana va valyuta ro'yxati
+                document.getElementById('calc-date').value = latest.dt;
                 populateCurrencies();
-                updateUI();
-                
-                document.getElementById('start-date').addEventListener('change', updateUI);
-                document.getElementById('end-date').addEventListener('change', updateUI);
+                setQuickFilter('1y');   // appReady hali false: faqat sanalarni qo'yadi
+                renderAll();            // keshdagi va joriy ma'lumot bilan darhol chizish
 
+                // 3) Tarixiy ma'lumot — fonda, progress bilan
+                appReady = true;
+                document.getElementById('start-date').addEventListener('change', refreshData);
+                document.getElementById('end-date').addEventListener('change', refreshData);
+                await refreshData();
             } catch (e) {
-                document.getElementById('main-app').innerHTML = `<div style="text-align:center; padding:50px; color:red;"><h3>Xatolik yuz berdi: ${e.message}</h3><button onclick="location.reload()">Sahifani yangilash</button></div>`;
+                hideStatus();
+                document.getElementById('main-app').innerHTML = `<div style="text-align:center; padding:50px; color:red;"><h3>Xatolik yuz berdi: ${e.message}</h3><p style="color:var(--text-secondary)">Markaziy bank saytidan ma'lumot olinmadi. Internet aloqasini yoki brauzerning CORS cheklovini tekshiring.</p><button onclick="location.reload()">Sahifani yangilash</button></div>`;
             }
         });
 
@@ -556,10 +526,11 @@
             else if(key === '1y') start.setFullYear(end.getFullYear() - 1);
             else if(key === '3y') start.setFullYear(end.getFullYear() - 3);
 
-            document.getElementById('end-date').value = end.toISOString().split('T')[0];
-            document.getElementById('start-date').value = start.toISOString().split('T')[0];
+            document.getElementById('end-date').value = fmtISO(end);
+            document.getElementById('start-date').value = fmtISO(start);
             
-            if(lineChart) updateUI();
+            document.querySelectorAll('.q-btn').forEach(b => b.classList.toggle('active', b.id === 'btn-' + key));
+            if (appReady) refreshData();
         }
 
         function handleCurrencyChange() { updateUI(); }
@@ -612,6 +583,8 @@
             const avg = rates.reduce((a,b)=>a+b,0) / rates.length;
 
             document.getElementById('val-current').textContent = fmt(last);
+            const dEl = document.getElementById('delta');
+            if (rates.length > 1) { const diff = last - rates[rates.length - 2]; dEl.textContent = `${diff >= 0 ? '▲' : '▼'} ${fmt(Math.abs(diff))} · ${t.delta}`; } else { dEl.textContent = ''; }
             document.getElementById('val-min').textContent = fmt(min);
             document.getElementById('val-avg').textContent = fmt(avg);
             document.getElementById('val-max').textContent = fmt(max);
@@ -623,7 +596,7 @@
         // --- Charts ---
         function drawHistoryChart(labels, data, ccy) {
             const ctx = document.getElementById('lineChart').getContext('2d');
-            if(lineChart) lineChart.destroy();
+            if (lineChart) { lineChart.data.labels = labels; lineChart.data.datasets[0].data = data; lineChart.data.datasets[0].label = ccy; lineChart.update('none'); return; }
 
             const isDark = document.body.classList.contains('dark-mode');
             const color = '#4361ee';
@@ -707,10 +680,12 @@
             const forecastArr = [];
             let currVal = lastVal;
             
+            const pct = chartHist.slice(1).map((x, i) => x.val / chartHist[i].val - 1);
+            const drift = pct.length ? pct.reduce((a, b) => a + b, 0) / pct.length : 0;
             for(let i=1; i<=6; i++) {
                 lastDate.setMonth(lastDate.getMonth()+1);
                 const nextM = lastDate.toISOString().substring(0,7);
-                currVal = currVal * (1 + (Math.random() * 0.02 - 0.01)); 
+                currVal = currVal * (1 + drift); 
                 forecastArr.push({ month: nextM, val: currVal });
             }
 
@@ -721,7 +696,7 @@
             const dataFore = forecastArr.map(x=>x.val);
 
             const ctx = document.getElementById('barChart').getContext('2d');
-            if(barChart) barChart.destroy();
+            if (barChart) { barChart.data.labels = labels; barChart.data.datasets[0].data = [...dataHist, ...padNulls]; barChart.data.datasets[1].data = [...padHistNulls, ...dataFore]; barChart.data.datasets[0].label = i18n[curLang].chart.history; barChart.data.datasets[1].label = i18n[curLang].chart.forecast; barChart.update('none'); return; }
             
             const isDark = document.body.classList.contains('dark-mode');
             const tLabels = i18n[curLang].chart;
@@ -842,7 +817,7 @@
         function fmt(n) { return new Intl.NumberFormat('uz-UZ', {minimumFractionDigits:2, maximumFractionDigits:2}).format(n); }
         
         function toggleTheme() { 
-            document.body.classList.toggle('dark-mode'); 
+            document.body.classList.toggle('dark-mode'); if (lineChart) lineChart.destroy(); if (barChart) barChart.destroy(); lineChart = barChart = null; 
             updateUI(); 
         }
         
@@ -853,12 +828,13 @@
             updateUI(); 
         }
         
-        function exportToExcel() {
+        async function exportToExcel() {
             const ccy = document.getElementById('currency-select').value;
             const sDate = new Date(document.getElementById('start-date').value);
             const eDate = new Date(document.getElementById('end-date').value);
             eDate.setHours(23, 59, 59);
 
+            await ensureRange(document.getElementById('start-date').value, document.getElementById('end-date').value);
             const filtered = rawData.filter(d => 
                 d.ccy === ccy && 
                 new Date(d.date) >= sDate && 
